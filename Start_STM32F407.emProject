@@ -1,0 +1,146 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="Start_STM32F407" target="8" version="2">
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG=1"
+    c_system_include_directories="$(StudioIncDir:$(StudioDir)/include);$(ProjectDir)/Inc;$(ProjectDir)/SEGGER"
+    gcc_debugging_level="Level 3"
+    gcc_optimization_level="None"
+    link_linker_script_file="D:/Proj/ARM/Kurs_STM32/week8/USB_OTG/Setup/STM32F4xx_Flash_CCM.icf"
+    link_use_linker_script_file="No"
+    linker_memory_map_file="D:/Proj/ARM/Kurs_STM32/week8/USB_OTG/Setup/STM32F407VETx_MemoryMap.xml" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_optimization_level="Level 2 for size"
+    link_time_optimization="Yes" />
+  <project Name="Start_STM32F407">
+    <configuration
+      LIBRARY_HEAP_LOCKING="User"
+      LIBRARY_IO_TYPE="RTT"
+      Name="Common"
+      Placement="Flash"
+      Target="STM32F407ZG"
+      arm_architecture="v7EM"
+      arm_assembler_variant="gcc"
+      arm_compiler_variant="SEGGER"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fp_abi="SoftFP"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_linker_heap_size="1024"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="1024"
+      arm_linker_variant="SEGGER"
+      arm_rtl_variant="SEGGER"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_device_name="STM32F407ZG"
+      arm_target_interface_type="SWD"
+      batch_build_configurations="Debug;Release"
+      build_intermediate_directory="$(ProjectDir)/Output/$(Configuration)/Obj"
+      build_output_directory="$(ProjectDir)/Output/$(Configuration)/Exe"
+      c_additional_options="-Wall;-Wextra;-Wunused-variable;-Wuninitialized;-Wmissing-field-initializers;-Wundef;-ffunction-sections;-fdata-sections"
+      c_only_additional_options="-Wmissing-prototypes"
+      c_preprocessor_definitions="USE_RTT=1;STM32F40XX;__STM32F4xx_FAMILY;__STM32F407_SUBFAMILY;HSE_VALUE=25000000"
+      c_user_include_directories="$(ProjectDir)/DeviceSupport;$(ProjectDir)/CoreSupport;$(ProjectDir)/SEGGER;$(ProjectDir)/../../../Inc"
+      debug_register_definition_file="$(ProjectDir)/Setup/STM32F40x_Registers.xml"
+      debug_stack_pointer_start="__stack_end__"
+      debug_target_connection="J-Link"
+      debug_threads_script="$(ProjectDir)/Setup/embOSPlugin.js"
+      gcc_entry_point="Reset_Handler"
+      link_linker_script_file="$(ProjectDir)/Setup/STM32F4xx_Flash_CCM.icf"
+      linker_additional_options="--gc-sections"
+      linker_memory_map_file="$(ProjectDir)/Setup/STM32F407ZG_MemoryMap.xml"
+      linker_printf_fmt_level="long"
+      linker_printf_width_precision_supported="Yes"
+      project_type="Executable"
+      target_reset_script="Reset();"
+      target_script_file="Setup/STM32F4xx_Target.js"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Debug"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_endian="Little"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_target_device_name="STM32F407VE"
+      c_system_include_directories="$(StudioIncDir:$(StudioDir)/include);$(ProjectDir)/Inc;$(ProjectDir)/SEGGER;$(ProjectDir)/USBD"
+      linker_memory_map_file="$(ProjectDir)/Setup/STM32F407VETx_MemoryMap.xml"
+      linker_section_placements_segments="FLASH1 RX 0x08000000 0x00080000;RAM1 RWX 0x20000000 0x00020000;" />
+    <folder Name="Application">
+      <file file_name="Application/main.c" />
+      <file file_name="Application/USB_HID_Keyboard.c" />
+      <file file_name="Application/USB_HID_Mouse.c">
+        <configuration Name="Debug" build_exclude_from_build="Yes" />
+      </file>
+    </folder>
+    <folder Name="DeviceSupport">
+      <file file_name="DeviceSupport/STM32F40x_Vectors.s" />
+      <file file_name="DeviceSupport/STM32F4xx_Startup.s" />
+      <file file_name="DeviceSupport/system_stm32f4xx.c" />
+    </folder>
+    <folder Name="Doc">
+      <file file_name="$(ProjectDir)/../../../../Release_embOS.html">
+        <configuration Name="Common" file_open_with="Web Browser" />
+      </file>
+      <file file_name="$(ProjectDir)/../../../../Release_embOS_CortexM_ES.html">
+        <configuration Name="Common" file_open_with="Web Browser" />
+      </file>
+      <file file_name="$(ProjectDir)/../../../../UM01001_embOS.pdf">
+        <configuration Name="Common" file_open_with="Web Browser" />
+      </file>
+      <file file_name="$(ProjectDir)/../../../../UM01061_embOS_CortexM_ES.pdf">
+        <configuration Name="Common" file_open_with="Web Browser" />
+      </file>
+    </folder>
+    <folder Name="Lib">
+      <file file_name="Lib/libos_v7m_t_vfpv4_le_dp.a" />
+      <file file_name="Lib/libos_v7m_t_vfpv4_le_r.a">
+        <configuration Name="Debug" build_exclude_from_build="Yes" />
+      </file>
+      <file file_name="Lib/libsegger_v7em_t_vfpv4_le_d.a" />
+      <file file_name="Lib/libsegger_v7em_t_vfpv4_le_r.a">
+        <configuration Name="Debug" build_exclude_from_build="Yes" />
+      </file>
+      <file file_name="Lib/libusbd_v7em_t_vfpv4_le_d.a" />
+      <file file_name="Lib/libusbd_v7em_t_vfpv4_le_r.a">
+        <configuration Name="Debug" build_exclude_from_build="Yes" />
+      </file>
+    </folder>
+    <folder Name="SEGGER">
+      <file file_name="SEGGER/SEGGER_RTT.c" />
+      <file file_name="SEGGER/SEGGER_RTT_ASM_ARMv7M.S" />
+      <file file_name="SEGGER/SEGGER_RTT_printf.c" />
+      <file file_name="SEGGER/SEGGER_SYSVIEW.c" />
+      <file file_name="SEGGER/SEGGER_SYSVIEW_Config_embOS.c" />
+      <file file_name="SEGGER/SEGGER_SYSVIEW_embOS.c" />
+    </folder>
+    <folder Name="Setup">
+      <file file_name="Setup/BSP.c" />
+      <file file_name="Setup/BSP_UART.c" />
+      <file file_name="Setup/HardFaultHandler.S" />
+      <file file_name="Setup/JLINKMEM_Process.c" />
+      <file file_name="Setup/OS_Error.c">
+        <configuration Name="Release" build_exclude_from_build="Yes" />
+      </file>
+      <file file_name="Setup/OS_ThreadSafe.c" />
+      <file file_name="Setup/RTOSInit_STM32F4xx.c" />
+      <file file_name="Setup/SEGGER_HardFaultHandler.c" />
+      <file file_name="Setup/SEGGER_THUMB_Startup.s" />
+      <file file_name="Setup/STM32F4xx_Flash_CCM.icf" />
+    </folder>
+    <folder Name="USBD">
+      <file file_name="USBD/BSP_USB.c" />
+      <file file_name="USBD/BSP_USB.h" />
+      <file file_name="USBD/USB.h" />
+      <file file_name="USBD/USB_Conf.h" />
+      <file file_name="USBD/USB_ConfDefaults.h" />
+      <file file_name="USBD/USB_Config_ST_STM32F407.c" />
+      <file file_name="USBD/USB_ConfigIO.c" />
+      <file file_name="USBD/USB_HID.h" />
+      <file file_name="USBD/USB_OS_embOSv5.c" />
+    </folder>
+    <file file_name="ReadMe.txt" />
+  </project>
+</solution>
